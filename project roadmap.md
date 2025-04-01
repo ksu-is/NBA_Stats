@@ -1,3 +1,3 @@
 - [x] Create README.md DONE
-- [ ] Assign license to repository
+- [x] Assign license to repository
         
