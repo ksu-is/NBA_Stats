@@ -1,9 +1,13 @@
 # NBA Statistics Presenter Roadmap
 
-- [x] Create README.md DONE
-- [x] Assign license to repository DONE
-- [x] Find similar repository DONE
+- [x] Create README.md 
+- [x] Create a Team for my project in ksu-is 
+- [x] Assign license to repository 
+- [x] Find similar repository 
 - [ ] Test repository
 - [x] Begin coding
-- [x] Imported necessary libraries
+- [x] Import necessary libraries
+- [ ] Create PowerPoint
+- [ ] Schedule Teams presentation
+
         
