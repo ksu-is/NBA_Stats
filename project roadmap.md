@@ -7,6 +7,7 @@
       
 - [x] Begin coding
 - [x] Import necessary libraries
+- [ ] Update README
 
 - [ ] Create PowerPoint
 - [ ] Schedule Teams presentation
