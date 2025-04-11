@@ -38,6 +38,9 @@ def player_stats():
     print("Career Stats for", full_name)
     print("-----------------------------------------------------")
     print(season_stats.to_string(index=False))
+    
+    print("Legend: GP = Games Played, MIN = Minutes, PTS = Points, AST = Assists, REB = Rebounds, STL = Steals, BLK = Blocks, TO = Turnovers, FG% = Field Goal Percentage, FT% = Free Throw Percentage, 3P% = Three Point Percentage")
+
 
 
 if __name__ == "__main__":
