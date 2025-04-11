@@ -7,34 +7,29 @@ import re
 
 all_players = players._get_players()
 
-def get_stats():
-    print("Welcome to the NBA Stats Presenter!")
-
-    while True:
-        get_name = input("Enter the name of a player to see their stats (or type 'exit' to quit): ").strip()
-        if get_name.lower() == 'exit':
-            print("Thank you for using the NBA Stats Presenter!")
-            break
-        if not get_name:
-            print("Please enter a valid name.")
-            continue
-        player_id = None
-        player_name = None
-        for player in all_players:
-            if re.search(get_name, player['full_name'], re.IGNORECASE):
-                player_id = player['id']
-                player_name = player['full_name']
-                break
-        if player_id is None:
-            print("Player not found. Please try again.")
-            continue
+def player_stats(answer):
+    stats = pd.DataFrame()
+    player_id = None
+    # Check if the input is a player name or a season
+    if re.match(r'^[a-zA-Z\s]+$', answer):
+        # Search for the player by name
+        player = next((player for player in all_players if player['full_name'].lower() == answer), None)
+        if player:
+            player_id = player['id']
+            career_stats = playercareerstats.PlayerCareerStats(player_id=player_id).get_data_frames()[0]
+            stats = career_stats[['SEASON_ID', 'TEAM_ID', 'PTS', 'REB', 'AST']]
+            stats.columns = ['Season', 'Team ID', 'Points', 'Rebounds', 'Assists']
         else:
-            print(f"Player found: {player_name}")
-            print("Fetching stats...")
-            try:
-                career_stats = commonplayerinfo.CommonPlayerInfo(player_id=player_id).get_data_frames()[0]
-                print(f"An error occurred while fetching stats: {e}")
-                continue
-            print(career_stats)
+            print("Player not found.")
+    else:
+        # Assume the input is a season
+        season_stats = leaguedashplayerstats.LeagueDashPlayerStats(season=answer).get_data_frames()[0]
+        stats = season_stats[['PLAYER_ID', 'PLAYER_NAME', 'PTS', 'REB', 'AST']]
+        stats.columns = ['Player ID', 'Player Name', 'Points', 'Rebounds', 'Assists']
 
-get_stats()
+
+
+
+
+if __name__ == "__main__":
+    answer = input('Enter the name of an NBA Player or a season(e.g."2022-23")').strip().lower()
