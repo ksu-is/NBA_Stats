@@ -30,17 +30,14 @@ def player_stats():
         print("Player not found.")
         return
     
-    print("Player found: " + player['full_name'])
-    career_stats = playerdashboardbygeneralsplits.PlayerDashboardByGeneralSplits(player_id=player_id).get_data_frames()[0]
-    career_stats = career_stats[['PLAYER_NAME','GP','MIN','FG%','3P%','FT%','PTS','REB','AST','STL','BLK','TO','PLUS_MINUS']]
-    career_stats = career_stats.rename(columns={'PLAYER_NAME': 'Player', 'GP': 'GP', 'MIN': 'MIN', 'FG%': 'FG%', '3P%': '3P%', 'FT%': 'FT%', 'PTS': 'PTS', 'REB': 'RPG', 'AST': 'APG', 'STL': 'SPG', 'BLK': 'BPG', 'TO': 'TO', '+/-': '+/-'})
-    career_stats = career_stats[['Player', 'GP', 'MIN', 'FG%', '3P%', 'FT%', 'PTS', 'RPG', 'APG', 'SPG', 'BPG', 'TO', '+/-']] 
-    career_stats = career_stats.dropna()
-    print(career_stats.head())
-    print("Career stats retrieved.")
-    print("Available columns:")
-print(career_stats.columns.tolist())
-
+    print("Player found!")
+    career_stats = playercareerstats.PlayerCareerStats(player_id=player_id)
+    career_df = career_stats.get_data_frames()[0]
+    season_stats = (career_df[['SEASON_ID','TEAM_ABBREVIATION','GP','MIN','PTS','AST','REB','STL','BLK','TOV','FG_PCT','FT_PCT','FG3_PCT']])
+    season_stats = season_stats.rename(columns={'SEASON_ID': 'Season', 'TEAM_ABBREVIATION': 'Team', 'GP': 'GP', 'MIN': 'MIN', 'PTS': 'PTS', 'AST': 'AST', 'REB': 'REB', 'STL': 'STL', 'BLK': 'BLK', 'TOV': 'TO', 'FG_PCT': 'FG%', 'FT_PCT': 'FT%', 'FG3_PCT': '3P%'})   
+    print("Career Stats for", full_name)
+    print("-----------------------------------------------------")
+    print(season_stats.to_string(index=False))
 
 
 if __name__ == "__main__":
