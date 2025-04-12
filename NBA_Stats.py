@@ -51,7 +51,6 @@ def player_stats():
     print("Legend:\nPPG = Points Per Game \nAPG = Assists Per Game \nRPG = Rebounds Per Game \nSPG = Steals Per Game \nBPG = Blocks Per Game \nTOV = Turnovers \nFG% = Field Goal Percentage \nFT% = Free Throw Percentage \n3P% = Three Point Percentage")
 
 
-
 if __name__ == "__main__":
     player_stats()
 
