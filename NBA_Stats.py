@@ -48,18 +48,7 @@ def player_stats():
     print("-----------------------------------------------------")
     print(season_stats.to_string(index=False))
     
-    print("Legend: " \
-    "GP = Games Played " \
-    "MIN = Minutes " \
-    "PPG = Points Per Game " \
-    "APG = Assists Per Game " \
-    "RPG = Rebounds Per Game " \
-    "SPG = Steals Per Game " \
-    "BPG = Blocks Per Game " \
-    "TPG = Turnovers Per Game " \
-    "FG% = Field Goal Percentage " \
-    "FT% = Free Throw Percentage " \
-    "3P% = Three Point Percentage")
+    print("Legend:\nPPG = Points Per Game \nAPG = Assists Per Game \nRPG = Rebounds Per Game \nSPG = Steals Per Game \nBPG = Blocks Per Game \nTOV = Turnovers \nFG% = Field Goal Percentage \nFT% = Free Throw Percentage \n3P% = Three Point Percentage")
 
 
 
