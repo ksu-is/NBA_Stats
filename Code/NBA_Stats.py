@@ -7,11 +7,13 @@ from nba_api.stats.endpoints import playerdashboardbygeneralsplits
 from nba_api.stats.endpoints import leaguedashplayerstats
 
 
-
+# Initialize the statistic finder function
 def player_stats():
     while True:
         print("Welcome to the NBA Player Stats Program!")
-        print("This program allows you to search for NBA player stats.") 
+        print("This program allows you to search for NBA player stats.")
+
+        # Receive user input for player name
         search = input("Enter the name of a player or 'q' to exit: ").strip().lower()
         if search == "q":
             print("Exiting the program.")
@@ -20,11 +22,11 @@ def player_stats():
             print("No input provided.")
             continue
         
-        
          
         print("Searching for player...")
         time.sleep(2)  
 
+        # Use regex to find players with similar names
         matches = players.find_players_by_full_name(search)
 
         if not matches:
@@ -47,11 +49,13 @@ def player_stats():
         else:
             selected = matches[0]
     
-  
+        # Display player information
         player_id = selected['id']
         full_name = selected['full_name']
         print("Player found!")
 
+        # Get player stats
+        print("Fetching player stats...")
         career_stats = playercareerstats.PlayerCareerStats(player_id=player_id)
         career_df = career_stats.get_data_frames()[0]
         career_df['Avg_MIN'] = career_df['MIN'] / career_df['GP']
