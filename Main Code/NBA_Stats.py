@@ -29,14 +29,14 @@ def player_stats():
         # Use regex to find players with similar names
         matches = players.find_players_by_full_name(search)
 
-        if not matches:
+        if search not matches:
             print("Player not found. Try again.")
             continue
 
         elif len(matches) > 1:
             print("Multiple players found:")
-            for index, player in enumerate(matches):
-                print(f"{index + 1}. {player['full_name']} (Active: {player['is_active']})")
+            for idx, player in enumerate(matches):
+                print(f"{idx + 1}. {player['full_name']} (Active: {player['is_active']})")
             choice = input("Select the player by number (or 'q' to quit): ")
             
             if choice.lower() == 'q':
