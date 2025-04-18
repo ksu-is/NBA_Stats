@@ -4,15 +4,7 @@ import time
 from nba_api.stats.static import players
 from nba_api.stats.endpoints import playercareerstats
 from nba_api.stats.static import teams
-
-nba_teams = teams.get_teams()
-
-
-
-
-
-
-
+from tabulate import tabulate
 
 
 # Initialize the statistic finder function
@@ -68,6 +60,10 @@ def player_stats():
             print("No career stats available for this player.")
             continue
 
+        nba_teams = teams.get_teams()
+        team_name = {team['abbreviation']: team['full_name'] for team in nba_teams}
+   
+
         career_df['Avg_MIN'] = career_df['MIN'] / career_df['GP']
         career_df['Avg_PTS'] = career_df['PTS'] / career_df['GP']
         career_df['Avg_AST'] = career_df['AST'] / career_df['GP']
@@ -80,11 +76,12 @@ def player_stats():
         career_df['FG3_PCT'] = (career_df['FG3_PCT']*100).round(1) 
         career_df[['Avg_MIN','Avg_PTS', 'Avg_AST', 'Avg_REB', 'Avg_STL', 'Avg_BLK', 'Avg_TOV','FG_PCT','FT_PCT','FG3_PCT']] = career_df[['Avg_MIN','Avg_PTS', 'Avg_AST', 'Avg_REB', 'Avg_STL', 'Avg_BLK', 'Avg_TOV','FG_PCT','FT_PCT','FG3_PCT']].round(1)
         season_stats = (career_df[['SEASON_ID','TEAM_ABBREVIATION' ,'GP','Avg_MIN','Avg_PTS','Avg_AST','Avg_REB','Avg_STL','Avg_BLK','Avg_TOV','FG_PCT','FT_PCT','FG3_PCT']].copy())
-        season_stats = season_stats.rename(columns={'SEASON_ID': 'Season', 'TEAM_ABBREVIATION': 'Team', 'GP': 'GP', 'Avg_MIN': 'MIN', 'Avg_PTS': 'PPG', 'Avg_AST': 'APG', 'Avg_REB': 'RPG', 'Avg_STL': 'SPG', 'Avg_BLK': 'BPG', 'Avg_TOV': 'TOV', 'FG_PCT': 'FG%', 'FT_PCT': 'FT%', 'FG3_PCT': '3P%'})   
+        season_stats = season_stats.rename(columns={'SEASON_ID': 'Season', 'TEAM_ABBREVIATION': 'Team', 'GP': 'GP', 'Avg_MIN': 'MPG', 'Avg_PTS': 'PPG', 'Avg_AST': 'APG', 'Avg_REB': 'RPG', 'Avg_STL': 'SPG', 'Avg_BLK': 'BPG', 'Avg_TOV': 'TOV', 'FG_PCT': 'FG%', 'FT_PCT': 'FT%', 'FG3_PCT': '3P%'})   
+        season_stats['Team'] = season_stats['Team'].map(team_name)
 
         print("Career Stats for", full_name)
         print("-----------------------------------------------------")
-        print(season_stats.to_string(index=False))
+        print(tabulate(season_stats, headers="keys", tablefmt="plain", showindex=False))
         print("-----------------------------------------------------")
         print("Legend:\nGP - Games Played \nMPG - Minutes Per Game \nPPG - Points Per Game \nAPG - Assists Per Game \nRPG - Rebounds Per Game \nSPG - Steals Per Game \nBPG - Blocks Per Game \nTOV - Turnovers \nFG% - Field Goal Percentage \nFT% - Free Throw Percentage \n3P% - Three Point Percentage")
         
