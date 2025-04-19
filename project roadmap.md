@@ -12,7 +12,7 @@
 - [ ] Make regular updates and commits to code
 - [ ] Frequently update README.md and projectroadmap,md
 ## Sprint 3
-- [ ] Continue developing and conducting tests on code
+- [x] Continue developing and conducting tests on code
 - [ ] Create PowerPoint and add to repo
 - [ ] Schedule Teams presentation
 
