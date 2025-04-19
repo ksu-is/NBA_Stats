@@ -63,7 +63,6 @@ def player_stats():
         nba_teams = teams.get_teams()
         team_name = {team['abbreviation']: team['full_name'] for team in nba_teams}
    
-
         career_df['Avg_MIN'] = career_df['MIN'] / career_df['GP']
         career_df['Avg_PTS'] = career_df['PTS'] / career_df['GP']
         career_df['Avg_AST'] = career_df['AST'] / career_df['GP']
@@ -80,9 +79,7 @@ def player_stats():
         season_stats['Team'] = season_stats['Team'].map(team_name)
 
         print("Career Stats for", full_name)
-        print("-----------------------------------------------------")
         print(tabulate(season_stats, headers="keys", tablefmt="plain", showindex=False))
-        print("-----------------------------------------------------")
         print("Legend:\nGP - Games Played \nMPG - Minutes Per Game \nPPG - Points Per Game \nAPG - Assists Per Game \nRPG - Rebounds Per Game \nSPG - Steals Per Game \nBPG - Blocks Per Game \nTOV - Turnovers \nFG% - Field Goal Percentage \nFT% - Free Throw Percentage \n3P% - Three Point Percentage")
         
         
