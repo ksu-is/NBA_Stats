@@ -16,7 +16,7 @@ def player_stats():
         # Receive user input for player name
         search = input("Enter the name of a player or 'q' to exit: ").strip().lower()
         if search == "q":
-            print("Exiting the program.")
+            print("Thank you, exiting the program.")
             return
         elif search == "":
             print("No input provided.")
@@ -59,27 +59,47 @@ def player_stats():
         if career_df.empty:
             print("No career stats available for this player.")
             continue
-
+        
+        # Get team names
         nba_teams = teams.get_teams()
         team_name = {team['abbreviation']: team['full_name'] for team in nba_teams}
-   
-        career_df['Avg_MIN'] = career_df['MIN'] / career_df['GP']
-        career_df['Avg_PTS'] = career_df['PTS'] / career_df['GP']
-        career_df['Avg_AST'] = career_df['AST'] / career_df['GP']
-        career_df['Avg_REB'] = career_df['REB'] / career_df['GP']
-        career_df['Avg_STL'] = career_df['STL'] / career_df['GP']
-        career_df['Avg_BLK'] = career_df['BLK'] / career_df['GP']
-        career_df['Avg_TOV'] = career_df['TOV'] / career_df['GP']
-        career_df['FG_PCT'] = (career_df['FG_PCT']*100).round(1)
-        career_df['FT_PCT'] = (career_df['FT_PCT']*100).round(1) 
-        career_df['FG3_PCT'] = (career_df['FG3_PCT']*100).round(1) 
-        career_df[['Avg_MIN','Avg_PTS', 'Avg_AST', 'Avg_REB', 'Avg_STL', 'Avg_BLK', 'Avg_TOV','FG_PCT','FT_PCT','FG3_PCT']] = career_df[['Avg_MIN','Avg_PTS', 'Avg_AST', 'Avg_REB', 'Avg_STL', 'Avg_BLK', 'Avg_TOV','FG_PCT','FT_PCT','FG3_PCT']].round(1)
-        season_stats = (career_df[['SEASON_ID','TEAM_ABBREVIATION' ,'GP','Avg_MIN','Avg_PTS','Avg_AST','Avg_REB','Avg_STL','Avg_BLK','Avg_TOV','FG_PCT','FT_PCT','FG3_PCT']].copy())
-        season_stats = season_stats.rename(columns={'SEASON_ID': 'Season', 'TEAM_ABBREVIATION': 'Team', 'GP': 'GP', 'Avg_MIN': 'MPG', 'Avg_PTS': 'PPG', 'Avg_AST': 'APG', 'Avg_REB': 'RPG', 'Avg_STL': 'SPG', 'Avg_BLK': 'BPG', 'Avg_TOV': 'TOV', 'FG_PCT': 'FG%', 'FT_PCT': 'FT%', 'FG3_PCT': '3P%'})   
-        season_stats['Team'] = season_stats['Team'].map(team_name)
+
+        # Add historical team names
+        team_name.update({
+            'NJN': 'New Jersey Nets',
+            'PHW': 'Philadelphia Warriors',
+            'SFW': 'San Francisco Warriors',
+            'SEA': 'Seattle SuperSonics',
+            'NOH': 'New Orleans Hornets',
+            'CHA': 'Charlotte Bobcats',
+            'VAN': 'Vancouver Grizzlies',
+            'NOK': 'New Orleans/Oklahoma City Hornets',
+            'WSB': 'Washington Bullets',  
+            'SDC': 'San Diego Clippers',
+            'KCO': 'Kansas City-Omaha Kings',
+            'BUF': 'Buffalo Braves',
+            'CHH': 'Charlotte Hornets (original)',
+            'NYN': 'New York Nets',
+            'INA': 'Indianapolis Olympians'
+        })
+        # Calculations for averages and percentages
+        career_df['MPG'] = career_df['MIN'] / career_df['GP']
+        career_df['PPG'] = career_df['PTS'] / career_df['GP']
+        career_df['APG'] = career_df['AST'] / career_df['GP']
+        career_df['RPG'] = career_df['REB'] / career_df['GP']
+        career_df['SPG'] = career_df['STL'] / career_df['GP']
+        career_df['BPG'] = career_df['BLK'] / career_df['GP']
+        career_df['TOV'] = career_df['TOV'] / career_df['GP']
+        career_df['FG%'] = (career_df['FG_PCT']*100).round(1)
+        career_df['FT%'] = (career_df['FT_PCT']*100).round(1) 
+        career_df['3P%'] = (career_df['FG3_PCT']*100).round(1) 
+        career_df['Team'] = career_df['TEAM_ABBREVIATION'].map(team_name)
+        career_df[['MPG','PPG', 'APG', 'RPG', 'SPG', 'BPG', 'TOV','FG%','FT%','3P%']] = career_df[['MPG','PPG', 'APG', 'RPG', 'SPG', 'BPG', 'TOV','FG%','FT%','3P%']].round(1)
+        season_stats = career_df[['SEASON_ID','Team' ,'GP','MPG','PPG', 'APG', 'RPG', 'SPG', 'BPG', 'TOV','FG%','FT%','3P%']].copy()
+        
 
         print("Career Stats for", full_name)
-        print(tabulate(season_stats, headers="keys", tablefmt="plain", showindex=False))
+        print(tabulate(season_stats, headers="keys", tablefmt="pipe", showindex=False))
         print("Legend:\nGP - Games Played \nMPG - Minutes Per Game \nPPG - Points Per Game \nAPG - Assists Per Game \nRPG - Rebounds Per Game \nSPG - Steals Per Game \nBPG - Blocks Per Game \nTOV - Turnovers \nFG% - Field Goal Percentage \nFT% - Free Throw Percentage \n3P% - Three Point Percentage")
         
         
