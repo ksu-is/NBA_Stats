@@ -8,7 +8,7 @@ from nba_api.stats.static import teams
 from tabulate import tabulate
 
 
-print("Welcome to the NBA Player Stats Program! \nThis program allows you to search for NBA player stats.")
+print("Welcome to the NBA Statistics Presenter! \nThis program allows you to search for NBA player stats.")
 
 
 # Initialize the statistic finder function
