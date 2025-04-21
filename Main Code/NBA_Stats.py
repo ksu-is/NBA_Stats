@@ -68,6 +68,9 @@ def player_stats():
         # Add historical team names
         team_name.update({
             'NJN': 'New Jersey Nets',
+            'STL': 'St.Louis Hawks',
+            'ROC': 'Rochester Royals',
+            'SYR': 'Syracuse Nationals',
             'PHW': 'Philadelphia Warriors',
             'SFW': 'San Francisco Warriors',
             'SEA': 'Seattle SuperSonics',
