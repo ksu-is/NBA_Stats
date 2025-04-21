@@ -7,12 +7,11 @@ from nba_api.stats.endpoints import leaguedashplayerstats
 from nba_api.stats.static import teams
 from tabulate import tabulate
 
+print("Welcome to the NBA Player Stats Program! \nThis program allows you to search for NBA player stats.")
 
 # Initialize the statistic finder function
 def player_stats():
     while True:
-        print("Welcome to the NBA Player Stats Program! \nThis program allows you to search for NBA player stats.")
-
         # Receive user input for player name
         search = input("Enter the name of a player or 'q' to exit: ").strip().lower()
         if search == "q":
@@ -23,7 +22,7 @@ def player_stats():
             continue
         
         print("Searching for player...")
-        time.sleep(2)  
+        time.sleep(1.5)  # Simulate a delay for the search
 
         # Use regex to find players with similar names
         matches = players.find_players_by_full_name(search)
@@ -53,7 +52,6 @@ def player_stats():
         print("Player found: {}".format(full_name))
 
         # Get player stats
-        print("Fetching player stats...")
         career_stats = playercareerstats.PlayerCareerStats(player_id=player_id)
         career_df = career_stats.get_data_frames()[0]
 
@@ -65,7 +63,7 @@ def player_stats():
         nba_teams = teams.get_teams()
         team_name = {team['abbreviation']: team['full_name'] for team in nba_teams}
 
-        # Add historical team names
+        # Add historical team names(API only returns current teams)
         team_name.update({
             'NJN': 'New Jersey Nets',
             'STL': 'St.Louis Hawks',
