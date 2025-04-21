@@ -135,7 +135,7 @@ def player_stats():
        
 # Run the program        
 if __name__ == "__main__":
-    player_stats()
+    player_stats() 
 
 
 
