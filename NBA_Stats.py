@@ -65,24 +65,27 @@ def player_stats():
 
         # Add historical team names(API only returns current teams)
         team_name.update({
-            'NJN': 'New Jersey Nets',
-            'STL': 'St.Louis Hawks',
-            'ROC': 'Rochester Royals',
-            'SYR': 'Syracuse Nationals',
-            'PHW': 'Philadelphia Warriors',
-            'SFW': 'San Francisco Warriors',
-            'SEA': 'Seattle SuperSonics',
-            'NOH': 'New Orleans Hornets',
+             'BUF': 'Buffalo Braves',
             'CHA': 'Charlotte Bobcats',
-            'VAN': 'Vancouver Grizzlies',
-            'NOK': 'New Orleans/Oklahoma City Hornets',
-            'WSB': 'Washington Bullets',  
-            'SDC': 'San Diego Clippers',
-            'KCO': 'Kansas City-Omaha Kings',
-            'BUF': 'Buffalo Braves',
             'CHH': 'Charlotte Hornets (original)',
+            'CIN': 'Cincinnati Royals',
+            'INA': 'Indianapolis Olympians',
+            'KCO': 'Kansas City-Omaha Kings',
+            'MIH': 'Milwaukee Hawks',
+            'MPL': 'Minneapoils Lakers',
+            'NJN': 'New Jersey Nets',
+            'NOH': 'New Orleans Hornets',
+            'NOK': 'New Orleans/Oklahoma City Hornets',
             'NYN': 'New York Nets',
-            'INA': 'Indianapolis Olympians'
+            'PHW': 'Philadelphia Warriors',
+            'ROC': 'Rochester Royals',
+            'SDC': 'San Diego Clippers',
+            'SEA': 'Seattle SuperSonics',
+            'SFW': 'San Francisco Warriors',
+            'STL': 'St.Louis Hawks',
+            'SYR': 'Syracuse Nationals',
+            'VAN': 'Vancouver Grizzlies',
+            'WSB': 'Washington Bullets'
         })
 
         # Calculations for averages and percentages
@@ -114,7 +117,7 @@ def player_stats():
         season_stats.rename(columns={'SEASON_ID': 'Season'}, inplace=True)
 
         # Format the season column to be more readable
-        print("Career Stats for", full_name)
+        print("\nCareer Stats for", full_name)
         print(tabulate(season_stats, headers="keys", tablefmt="pipe", showindex=False))
         
         # Add a legend for the stats
