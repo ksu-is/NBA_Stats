@@ -114,11 +114,9 @@ def player_stats():
        
         # Round the stats to one decimal place
         career_df[['MPG','PPG', 'APG', 'RPG', 'SPG', 'BPG', 'TOV','FG%','FT%','3P%','TS%']] = career_df[['MPG','PPG', 'APG', 'RPG', 'SPG', 'BPG', 'TOV','FG%','FT%','3P%','TS%']].round(1)
-       
-        career_df['TEAM_ABBREVIATION'].fillna(method='ffill', inplace=True)
 
         # Map team abbreviations to full names
-        career_df['Team'] = career_df['TEAM_ABBREVIATION'].map(team_name)
+        career_df['Team'] = career_df['TEAM_ABBREVIATION']
 
         # Filter the DataFrame to include only the relevant columns
         season_stats = career_df[['SEASON_ID','Team' ,'GP','MPG','PPG', 'APG', 'RPG', 'SPG', 'BPG', 'TOV','FG%','FT%','3P%','TS%']].copy()
