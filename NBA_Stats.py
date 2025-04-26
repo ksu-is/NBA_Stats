@@ -79,7 +79,7 @@ def player_stats():
             'INA': 'Indianapolis Olympians',
             'KCO': 'Kansas City-Omaha Kings',
             'MIH': 'Milwaukee Hawks',
-            'MPL': 'Minneapoils Lakers',
+            'MNL': 'Minneapoils Lakers',
             'NJN': 'New Jersey Nets',
             'NOH': 'New Orleans Hornets',
             'NOK': 'New Orleans/Oklahoma City Hornets',
