@@ -21,5 +21,6 @@ Python 3.x
    ```
    python NBA_Stats.py
    ```
-
+## Acknowledgments
+Provision of the nba_api library is credited to [swar/nba_api](https://github.com/swar/nba_api). Additionally, this code was partly developed with the help of Visual Studio Code's IntelliSense feature.
 
