@@ -14,7 +14,7 @@
 ## Sprint 3
 - [x] Continue developing and conducting tests on code
 - [x] Add Splash Screen to repo
-- [ ] Create PowerPoint and add to repo
-- [ ] Schedule Teams presentation
+- [x] Create PowerPoint and add to repo
+- [x] Schedule Teams presentation
 
         
