@@ -5,6 +5,7 @@ from tabulate import tabulate
 
 print("Welcome to the NBA Statistics Presenter! \nThis program allows you to search for NBA player stats.")
 
+
 # Initialize the statistic finder function
 def player_stats():
     while True:
