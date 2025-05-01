@@ -9,8 +9,8 @@
 ## Sprint 2 
 - [x] Import necessary libraries
 - [x] Begin devleoping code
-- [ ] Make regular updates and commits to code
-- [ ] Frequently update README.md and projectroadmap,md
+- [x] Make regular updates and commits to code
+- [x] Frequently update README.md and projectroadmap.md
 ## Sprint 3
 - [x] Continue developing and conducting tests on code
 - [x] Add Splash Screen to repo
